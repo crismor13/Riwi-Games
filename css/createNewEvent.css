@@ -2,7 +2,6 @@
   width: 60vw;
   height: 93vh;
   padding: 10px;
-  border: 2px solid red;
   position: absolute;
   z-index: 1;
   & .container {
@@ -14,13 +13,22 @@
     border-radius: 15px;
     & form {
       width: 100%;
-      height: 100%;
+      height: 90%;
       padding: 15px;
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
-      gap: 5¡px;
+      gap: 5px;
+      align-items: center;
+      color: var(--fontW);
       justify-content: space-between;
+      & .requerimientos {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      & button {
+        width: 125px;
+      }
     }
     & h4 {
       margin: 10px;
