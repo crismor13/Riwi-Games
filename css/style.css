@@ -11,15 +11,14 @@
   box-sizing: border-box;
 }
 
-body {
+/* body {
   height: 100vh;
   overflow: hidden;
-}
-
-/* .navbar > .container-fluid {
-  display: flex;
-  justify-content: space-between;
 } */
+
+.navbar {
+  width: 100vw;
+}
 
 .riwi-dark-bg {
   background-color: var(--secondary);
