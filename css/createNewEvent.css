@@ -11,13 +11,13 @@
 
 .create-event {
   width: 50%;
-  max-height: 100%;
+  height: auto;
   padding: 10px;
-  position: absolute;
+  /* position: absolute; */
   z-index: 1;
   & .container {
     display: flex;
-    max-height: 100%;
+    height: auto;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
@@ -34,11 +34,11 @@
       justify-content: space-between;
       & .requerimientos {
         display: flex;
-        max-height: 35%;
+        height: 35%;
         gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
-        & .desc_award { 
+        & .desc_award {
           flex-grow: 1;
         }
       }
