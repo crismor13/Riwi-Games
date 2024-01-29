@@ -1,0 +1,8 @@
+body {
+  background-image: url(../static/SDFC-7-800x600-2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  backdrop-filter: blur(3.5px);
+  /* -webkit-filter: blur(8px); */
+}
