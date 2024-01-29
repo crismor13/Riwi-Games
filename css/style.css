@@ -42,7 +42,7 @@ body {
 }
 
 .hero {
-  min-height: 93vh;
+  min-height: 89.5vh;
   background-image: url("/static/soccerField.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -68,10 +68,10 @@ body {
 
 .hero__cta-container {
   /* position: relative; */
-  border: 3px solid red;
+  /* border: 3px solid red; */
   position: absolute;
   width: 35%;
-  height: 40%;
+  height: 48%;
   top: 35%;
   left: 2.5%;
 }
