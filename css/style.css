@@ -49,7 +49,7 @@ body {
   /* background-position: 5% -25%; */
   position: relative;
   font-weight: 700;
-  /* border: 3px solid red; */
+  border: 3px solid lime;
   background-attachment: fixed;
 }
 
@@ -68,8 +68,8 @@ body {
 
 .hero__cta-container {
   /* position: relative; */
-  /* border: 3px solid red; */
-  position: relative;
+  border: 3px solid red;
+  position: absolute;
   width: 35%;
   height: 40%;
   top: 35%;
