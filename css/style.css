@@ -42,14 +42,14 @@ body {
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 93vh;
   background-image: url("/static/soccerField.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   /* background-position: 5% -25%; */
   position: relative;
   font-weight: 700;
-  border: 3px solid lime;
+  /* border: 3px solid lime; */
   background-attachment: fixed;
 }
 
