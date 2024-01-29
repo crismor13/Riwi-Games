@@ -16,6 +16,11 @@ body {
   overflow: hidden;
 }
 
+/* .navbar > .container-fluid {
+  display: flex;
+  justify-content: space-between;
+} */
+
 .riwi-dark-bg {
   background-color: var(--secondary);
 }
