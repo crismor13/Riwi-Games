@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Riwi Games</title>
     <link rel="stylesheet" href="css/style.css" />
-    <!-- <link rel="stylesheet" href="createNewEvent.css" /> -->
+    <link rel="stylesheet" href="css/createNewEvent.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -123,13 +123,49 @@
           are made of
           <i class="bi bi-0-circle"></i>
         </h1>
-        <a href="pages/createNewEvent.html">
-          <button class="cta__btn1 btn btn-lg" href="pages/createNewEvent.html">
+        
+          <button
+            class="cta__btn1 btn btn-lg"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
             Create Event
           </button>
         </a>
 
         <button class="cta__btn2 btn btn-lg">Explore Events</button>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content new_event">
+            <div class="modal-header d-flex justify-content-center">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                New Event Information
+              </h1>
+              
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <script
