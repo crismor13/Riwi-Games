@@ -33,9 +33,29 @@ body {
   justify-content: space-between;
 } */
 
+.navbar__content-container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  height: 9vh;
+}
+
 .navbar {
   width: 100vw;
-  height: 7vh;
+  height: 9vh;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nav-link {
+  color: white !important;
+  transition: 0.4s;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
 }
 
 .riwi-dark-bg {
@@ -43,7 +63,7 @@ body {
 }
 
 .hero {
-  min-height: 93vh;
+  min-height: 91vh;
   background-image: url("/static/soccerField.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -74,7 +94,7 @@ body {
   width: 35%;
   height: 48%;
   top: 35%;
-  left: 2.5%;
+  left: 3.5%;
 }
 
 .cta__heading {
