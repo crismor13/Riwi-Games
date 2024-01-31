@@ -1,0 +1,25 @@
+{
+  "users": [],
+  "events": [
+    {
+      "id": "xxx",
+      "rentalCost": "120000",
+      "minPlayers": "10",
+      "location": "6 piso de moda outlet",
+      "date": "2024-02-02",
+      "time": "14:25",
+      "description": "ase",
+      "award": "asfd"
+    },
+    {
+      "id": "xxx",
+      "rentalCost": "0",
+      "minPlayers": "8",
+      "location": "micro ba",
+      "date": "2024-02-02",
+      "time": "20:40",
+      "description": "llevar balon para micro, hacer mercado, llevar pa gaseosa",
+      "award": "equipo que gane no coloca vaca"
+    }
+  ]
+}
