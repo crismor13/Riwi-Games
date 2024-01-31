@@ -1,0 +1,36 @@
+//selectores
+const URL = "http://localhost:3000";
+const form = document.querySelector("form");
+let cache = "xxx";
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const event = {};
+
+  for (const [key, value] of formData) {
+    if (value == "") return;
+
+    event[key] = value;
+  }
+  event.id = cache;
+  createEvent(event);
+  form.reset();
+});
+
+async function createEvent(event) {
+  //VERBOS HTTP
+  //GET -> OBTENER
+  //POST -> CREAR
+  //PUT -> ACTUALIZAR
+  //DELETE -> ELIMINAR
+  //PATCH -> ACTUALIZAR PARCIAL
+
+  await fetch(`${URL}/events`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(event),
+  });
+}
