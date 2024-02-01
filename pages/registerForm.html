@@ -59,13 +59,23 @@
                   <!-- Reduced padding -->
                   <div class="form-outline mb-2">
                     <!-- Reduced margin -->
-                    <input type="text" id="fullname" class="form-control" />
+                    <input
+                      name="fullName"
+                      type="text"
+                      id="fullname"
+                      class="form-control"
+                    />
                     <label class="form-label" for="fullname">Fullname</label>
                   </div>
 
                   <div class="form-outline mb-2">
                     <!-- Reduced margin -->
-                    <input type="email" id="email" class="form-control" />
+                    <input
+                      name="email"
+                      type="email"
+                      id="email"
+                      class="form-control"
+                    />
                     <label class="form-label" for="email">Email</label>
                   </div>
 
@@ -73,6 +83,7 @@
                     <div class="col-md-6 mb-2">
                       <div class="form-outline">
                         <input
+                          name="password"
                           type="password"
                           id="password"
                           class="form-control"
@@ -99,11 +110,12 @@
                   <div class="mb-4">
                     <!-- Reduced margin -->
                     <select
+                      name="level"
                       class="form-select"
                       aria-label="Default select example"
                     >
                       <option selected>
-                        Choose your current level at fuchibol
+                        Choose your current level at fuchibol (Level One is Top)
                       </option>
                       <option value="1">One</option>
                       <option value="2">Two</option>

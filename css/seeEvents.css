@@ -1,0 +1,12 @@
+.hero {
+  background-image: url(../static/uefa_champions_league_cup_101690_1920x1200.jpg);
+  display: flex;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  min-height: 91vh;
+  width: 100vw;
+  & .cont_cards {
+    z-index: 2;
+  }
+}

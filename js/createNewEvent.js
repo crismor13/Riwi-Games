@@ -3,6 +3,7 @@ const URL = "http://localhost:3000";
 const form = document.querySelector("form");
 let cache = "xxx";
 
+//Eventos
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(form);
@@ -13,11 +14,14 @@ form.addEventListener("submit", (e) => {
 
     event[key] = value;
   }
-  event.id = cache;
+  event.userID = cache;
+  event.confirmed = 0;
+  event.unconfirmed = 0;
   createEvent(event);
   form.reset();
 });
 
+//Funciones
 async function createEvent(event) {
   //VERBOS HTTP
   //GET -> OBTENER
