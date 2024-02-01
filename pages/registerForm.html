@@ -35,7 +35,7 @@
       </div>
     </nav>
     <section class="h-100 h-custom">
-      <div class="container py-5 h-100">
+      <div class="container py-4 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-lg-8 col-xl-6">
             <div class="card rounded-3 border-0">
@@ -48,69 +48,70 @@
                 "
                 alt="Sample photo"
               />
-              <div class="card-body p-4 p-md-5">
-                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
+              <div class="card-body p-2 p-md-3">
+                <!-- Reduced padding -->
+                <h4 class="mb-2 pb-1 pb-md-2 mb-md-3 px-md-1">
+                  <!-- Reduced margin and padding -->
                   Registration Info
-                </h3>
+                </h4>
 
-                <form class="px-md-2">
-                  <div class="form-outline mb-4">
-                    <input
-                      type="text"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Name</label>
+                <form class="px-md-1">
+                  <!-- Reduced padding -->
+                  <div class="form-outline mb-2">
+                    <!-- Reduced margin -->
+                    <input type="text" id="fullname" class="form-control" />
+                    <label class="form-label" for="fullname">Fullname</label>
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <!-- Reduced margin -->
+                    <input type="email" id="email" class="form-control" />
+                    <label class="form-label" for="email">Email</label>
                   </div>
 
                   <div class="row">
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline datepicker">
+                    <div class="col-md-6 mb-2">
+                      <div class="form-outline">
                         <input
-                          type="text"
+                          type="password"
+                          id="password"
                           class="form-control"
-                          id="exampleDatepicker1"
                         />
-                        <label for="exampleDatepicker1" class="form-label"
-                          >Select a date</label
+                        <label class="form-label" for="password"
+                          >Password</label
                         >
                       </div>
                     </div>
-                    <div class="col-md-6 mb-4">
-                      <select class="select">
-                        <option value="1" disabled>Gender</option>
-                        <option value="2">Female</option>
-                        <option value="3">Male</option>
-                        <option value="4">Other</option>
-                      </select>
+                    <div class="col-md-6 mb-2">
+                      <div class="form-outline">
+                        <input
+                          type="password"
+                          id="repeat-password"
+                          class="form-control"
+                        />
+                        <label class="form-label" for="repeat-password"
+                          >Repeat password</label
+                        >
+                      </div>
                     </div>
                   </div>
 
                   <div class="mb-4">
-                    <select class="select">
-                      <option value="1" disabled>Class</option>
-                      <option value="2">Class 1</option>
-                      <option value="3">Class 2</option>
-                      <option value="4">Class 3</option>
+                    <!-- Reduced margin -->
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>
+                        Choose your current level at fuchibol
+                      </option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
                     </select>
                   </div>
 
-                  <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
-                    <div class="col-md-6">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          id="form3Example1w"
-                          class="form-control"
-                        />
-                        <label class="form-label" for="form3Example1w"
-                          >Registration code</label
-                        >
-                      </div>
-                    </div>
-                  </div>
-
-                  <button type="submit" class="btn btn-success btn-lg mb-1">
+                  <button type="submit" class="btn btn-success btn-md mb-1">
                     Submit
                   </button>
                 </form>
