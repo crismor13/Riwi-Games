@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
 
-    
+
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/registerForm.css" />
   </head>
@@ -66,6 +66,7 @@
                       type="text"
                       id="fullname"
                       class="form-control"
+                      required
                     />
                     <label class="form-label" for="fullname">Fullname</label>
                   </div>
@@ -77,6 +78,7 @@
                       type="email"
                       id="email"
                       class="form-control"
+                      required
                     />
                     <label class="form-label" for="email">Email</label>
                   </div>
@@ -89,6 +91,7 @@
                           type="password"
                           id="password"
                           class="form-control"
+                          required
                         />
                         <label class="form-label" for="password"
                           >Password</label
@@ -101,6 +104,7 @@
                           type="password"
                           id="repeat-password"
                           class="form-control"
+                          required
                         />
                         <label class="form-label" for="repeat-password"
                           >Repeat password</label
@@ -115,6 +119,7 @@
                       name="level"
                       class="form-select"
                       aria-label="Default select example"
+                      required
                     >
                       <option selected>
                         Choose your current level at fuchibol (Level One is Top)
@@ -135,5 +140,7 @@
         </div>
       </div>
     </section>
+    
+    <script src="../js/register.js"></script>
   </body>
 </html>
