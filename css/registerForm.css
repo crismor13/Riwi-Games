@@ -19,8 +19,15 @@ body {
   min-height: 100vh;
 }
 
+.align-container {
+  display: flex;
+  align-items: center;
+  height: 91vh;
+}
+
 .card {
   box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.5);
+  height: 100%;
 }
 
 .card > img {
