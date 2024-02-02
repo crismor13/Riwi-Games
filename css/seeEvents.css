@@ -6,6 +6,8 @@
   align-items: center;
   min-height: 91vh;
   width: 100vw;
+  gap: 15px;
+  flex-wrap: wrap;
   & .cont_cards {
     z-index: 2;
     display: flex;
