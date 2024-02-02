@@ -15,8 +15,8 @@ form.addEventListener("submit", (e) => {
     event[key] = value;
   }
   event.userID = cache;
-  event.confirmed = 0;
-  event.unconfirmed = 0;
+  event.confirmed = [{ userID: cache }];
+  event.unconfirmed = [];
   createEvent(event);
   form.reset();
 });
