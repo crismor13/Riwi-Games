@@ -27,23 +27,40 @@
       "id": "001",
       "rentalCost": "120000",
       "minPlayers": "10",
-      "location": "6 piso de moda outlet",
+      "location": "6 Piso de Moda Outlet",
       "date": "2024-02-02",
       "time": "14:25",
-      "description": "ase",
+      "description": "Terminando Clases, puntuales, ya esta apartada",
       "award": "asfd",
-      "userId": "asdf"
+      "userId": "jjskj",
+      "confirmed": [{ "userID": "jjskj" }],
+      "unconfirmed": []
     },
     {
       "id": "001",
       "rentalCost": "0",
       "minPlayers": "8",
-      "location": "micro ba",
+      "location": "Micro Barrio Antioquia",
       "date": "2024-02-02",
       "time": "20:40",
-      "description": "llevar balon para micro, hacer mercado, llevar pa gaseosa",
-      "award": "equipo que gane no coloca vaca",
-      "userId": "asdf"
+      "description": "Llevar balon para micro, $ 2.000",
+      "award": "Coca-Cola, Salchichon y Pan!",
+      "userId": "asdf",
+      "confirmed": [{ "userID": "asdf" }],
+      "unconfirmed": []
+    },
+    {
+      "id": "c309",
+      "rentalCost": "100000",
+      "minPlayers": "8",
+      "location": "6 piso de moda outlet",
+      "date": "2024-02-16",
+      "time": "14:00",
+      "description": "llegar 10 minutos antes ",
+      "award": "primer ronda gratis ",
+      "userID": "bd93",
+      "confirmed": [{ "userID": "bd93" }],
+      "unconfirmed": []
     }
   ]
 }
