@@ -1,18 +1,12 @@
-const form = document.querySelector("form");
+//Selectores
+const URL = 
 
-// form.addEventListener("submit", function (event) {
-//     event.preventDefault();
-//     console.log("object");
-// })
+const form = document.getElementById("form-register");
+const email = document.getElementById("email")
+const password = document.getElementById("password")
+const passwordConfirmation = document.getElementById("repeat-password")
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const formData = new FormData(form);
-  const user = {};
-
-  for (const [key, value] of formData) {
-    user[key] = value;
-  }
-  // createUser(user);
-  form.reset();
-});
+form.addEventListener("submit", (event)=> {
+    event.preventDefault();
+    console.log("object");
+})
