@@ -8,22 +8,46 @@ const tooltipList = [...tooltipTriggerList].map(
 // Selectores
 const container = document.getElementById("hero");
 const URL = "http://localhost:3000/events";
+cache ="id login"
 
 //eventos
 document.addEventListener("DOMContentLoaded", () => {
   getEvents();
 });
 
+container.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (e.target.classList.contains("like")) {
+    const id = e.target.getAttribute("data-id");
+    confirmAsis(id);
+  }
+});
+
+async function confirmAsis(id) {
+  const event = await getEvents();
+
+
+  console.log(event);
+}
+
 async function getEvents() {
   const response = await fetch(`${URL}?_embed=user`);
   const data = await response.json();
   pintarEvents(data);
+  return data;
 }
 
 function pintarEvents(data) {
-  console.log(data);
   cleanHTML();
   data.forEach((event) => {
+    const x = event.confirmed.length;
+    const ux = event.unconfirmed.length;
+    console.log(ux);
+    const number = Number.parseInt(event.rentalCost);
+    const cost = number.toLocaleString("en", {
+      style: "currency",
+      currency: "COL",
+    });
     const div = document.createElement("div");
     div.classList.add("cont_cards");
     div.innerHTML += `
@@ -39,27 +63,28 @@ function pintarEvents(data) {
               ></i>
             </div>
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-evenly">
             <p>Date Event ${event.date}</p>
-            <p>time ${event.time}</p>
+            <p>Time ${event.time}</p>
             </div>
-
-            <p class="card-text">
+            <div class="desc">
+            <h5 class="card-text d-flex justify-content-center">
               ${event.description}
+            </h5>
+            </div>
+            <div class="d-flex g-2 justify-content-evenly asist">
+            <p class="">${cost}</p>
+            <p class="g">
+              Confirmed Players ${x}/${event.minPlayers}
             </p>
-            <div class="d-flex g-2 justify-content-between">
-            <p class="card-text">${event.rentalCost}</p>
-            <p class="card-text">
-              Confirmed Players 0/${event.minPlayers}
-            </p>
-            <p class="card-text">
-              Cannot Attend 0 
+            <p class="r">
+              Cannot Attend ${ux}
             </p>
             </div>
             <div class="d-flex justify-content-center">
             <p>pay per player </p>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-evenly">
             <p>Award</p>
             <p>${event.award}</p>
             </div>
@@ -69,20 +94,22 @@ function pintarEvents(data) {
               aria-label="Basic mixed styles example"
             >
               <button
+                data-id="${event.id}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 data-bs-title="Confirm Assistance"
                 type="button"
-                class="btn btn-success"
+                class="btn btn-success like"
               >
                 <i class="bx bxs-like"></i>
               </button>
               <button
+                data-id="${event.id}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 data-bs-title="I can't attend"
                 type="button"
-                class="btn btn-danger"
+                class="btn btn-danger dislike"
               >
                 <i class="bx bxs-dislike"></i>
               </button>
@@ -90,8 +117,8 @@ function pintarEvents(data) {
           </div>
         </div>
         <div class="buttonsS d-flex justify-content-evenly">
-          <button type="button" class="btn btn-outline-light">Edit</button>
-          <button type="button" class="btn btn-outline-light">Delete</button>
+          <button data-id="${event.id}" type="button" class="btn btn-outline-light">Edit</button>
+          <button data-id="${event.id}"type="button" class="btn btn-outline-light">Delete</button>
         </div>`;
     container.appendChild(div);
   });
