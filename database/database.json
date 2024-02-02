@@ -13,6 +13,13 @@
       "email": "byronotalvaro92@gmail.com",
       "password": "Byron123",
       "level": "1"
+    },
+    {
+      "id": "bd93",
+      "email": "cristian@gmail.com",
+      "password": "c123",
+      "fullName": "Cristian",
+      "level": "3"
     }
   ],
   "events": [
