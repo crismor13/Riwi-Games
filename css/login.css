@@ -64,7 +64,7 @@
   
   .hero {
     min-height: 91vh;
-    background-image: url("/static/soccerField.jpg");
+    background-image: url("/static/login.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     /* background-position: 5% -25%; */
@@ -72,6 +72,9 @@
     font-weight: 700;
     /* border: 3px solid lime; */
     background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .hero:after {
@@ -126,4 +129,8 @@
     border: none;
     color: var(--fontW) !important;
   }
-  
+  #form-login{
+    z-index: 2;
+
+    background-color: rgb(255, 255, 255)
+  }
