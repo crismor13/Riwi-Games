@@ -14,9 +14,8 @@ formLogin.addEventListener("submit", (e) => {
 async function login() {
   const response = await fetch(`${URLBase}?email=${email.value}`);
   const data = await response.json();
-  const user = JSON.stringify(data);
-  console.log(data);
-
+  const user = JSON.stringify(data[0].id);
+  console.log(user);
   if (!data.length) {
     console.log("Email no resgistrado");
     return;
@@ -24,7 +23,7 @@ async function login() {
   if (data[0].password === password.value) {
     window.location.href = "../index.html";//en el caso del proyecto seria enviarlo a home
     localStorage.setItem("isAuthenticated", "true");
-    localStorage.setItem("user", user);
+    localStorage.setItem("user", user );
   } else {
     console.log("Credenciales incorrectas");
   }

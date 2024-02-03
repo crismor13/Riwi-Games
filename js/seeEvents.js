@@ -1,3 +1,4 @@
+import { idUserlogin } from "./createNewEvent.js";
 const tooltipTriggerList = document.querySelectorAll(
   '[data-bs-toggle="tooltip"]'
 );
@@ -8,10 +9,12 @@ const tooltipList = [...tooltipTriggerList].map(
 // Selectores
 const container = document.getElementById("hero");
 const URL = "http://localhost:3000/events";
-cache = "id login";
+let cache = idUserlogin();
+// cache = "id login";
 
 //eventos
 document.addEventListener("DOMContentLoaded", () => {
+  container.click();
   getEvents();
 });
 
@@ -24,16 +27,39 @@ container.addEventListener("click", (e) => {
 });
 
 async function confirmAsis(id) {
-  const event = await getEvents();
-
-  console.log(event);
+  const response = await fetch(`${URL}/${id}`);
+  const data = await response.json();
+  const isUserInList = data.confirmed.some((user) => user.userId === cache); // esto busca si por lo menos uno esta en la lista
+  if (!isUserInList) {
+    const newAsist = [...data.confirmed, { userId: cache }];
+    await fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ confirmed: newAsist }),
+    });
+  }
 }
+
+// const isUserInList = data.confirmed.some((user) => user.userId === cache); // esto busca si por lo menos uno esta en la lista
+// if (isUserInList) {
+//   const newAsist = [...data.confirmed];
+
+//   const newlist = newAsist.filter((user) => user.userId !== cache);
+//   await fetch(`${URL}/${id}`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ confirmed: newlist }),
+//   });
+// }
 
 async function getEvents() {
   const response = await fetch(`${URL}?_embed=user`);
   const data = await response.json();
   pintarEvents(data);
-  return data;
 }
 
 function pintarEvents(data) {
@@ -41,17 +67,15 @@ function pintarEvents(data) {
   data.forEach((event) => {
     const x = event.confirmed.length;
     const ux = event.unconfirmed.length;
-
-    console.log(ux);
     const number = Number.parseInt(event.rentalCost);
     const d = number / x;
     const cd = d.toLocaleString("en", {
       style: "currency",
-      currency: "COL",
+      currency: "COP",
     });
     const cost = number.toLocaleString("en", {
       style: "currency",
-      currency: "COL",
+      currency: "COP",
     });
     const div = document.createElement("div");
     div.classList.add("cont_cards");
@@ -87,7 +111,7 @@ function pintarEvents(data) {
             </p>
             </div>
             <div class="d-flex justify-content-center">
-            <p>Pay per player ${d} </p>
+            <p>Pay per player ${cd} </p>
             </div>
             <div class="d-flex justify-content-evenly">
             <p>Award</p>
@@ -99,7 +123,7 @@ function pintarEvents(data) {
               aria-label="Basic mixed styles example"
             >
               <button
-                data-id="${event.id}
+                data-id="${event.id}"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 data-bs-title="Confirm Assistance"
@@ -109,7 +133,7 @@ function pintarEvents(data) {
                 <i class="bx bxs-like"></i>
               </button>
               <button
-                data-id="${event.id}
+                data-id="${event.id}"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 data-bs-title="I can't attend"

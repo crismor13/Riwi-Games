@@ -19,16 +19,16 @@ if (isUserLoggedIn == "true") {
 
   newLogOutItem.addEventListener("click", logOutUser);
 
-  console.log(newLogOutItem);
+  
   navbarUnorderedList.append(newLogOutItem);
 
-  console.log(newLogOutItem);
+  
 } else if (isUserLoggedIn == "false") {
   let logOutOption = navbarUnorderedList.querySelector("#log-out");
   logOutOption.remove();
 }
 
 function logOutUser() {
-  localStorage.setItem("isAuthenticated", "false");
+  localStorage.clear();
   alert("You have been logged out");
 }

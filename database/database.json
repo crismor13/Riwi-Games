@@ -33,11 +33,21 @@
       "description": "Terminando Clases, puntuales, ya esta apartada",
       "award": "asfd",
       "userId": "jjskj",
-      "confirmed": [{ "userID": "jjskj" }],
+      "confirmed": [
+        {
+          "userId": "asdf"
+        },
+        {
+          "userId": "bd93"
+        },
+        {
+          "userId": "jjskj"
+        }
+      ],
       "unconfirmed": []
     },
     {
-      "id": "001",
+      "id": "002",
       "rentalCost": "0",
       "minPlayers": "8",
       "location": "Micro Barrio Antioquia",
@@ -46,7 +56,17 @@
       "description": "Llevar balon para micro, $ 2.000",
       "award": "Coca-Cola, Salchichon y Pan!",
       "userId": "asdf",
-      "confirmed": [{ "userID": "asdf" }],
+      "confirmed": [
+        {
+          "userId": "asdf"
+        },
+        {
+          "userId": "bd93"
+        },
+        {
+          "userId": "jjskj"
+        }
+      ],
       "unconfirmed": []
     },
     {
@@ -59,7 +79,17 @@
       "description": "llegar 10 minutos antes ",
       "award": "primer ronda gratis ",
       "userID": "bd93",
-      "confirmed": [{ "userID": "bd93" }],
+      "confirmed": [
+        {
+          "userId": "bd93"
+        },
+        {
+          "userId": "asdf"
+        },
+        {
+          "userId": "jjskj"
+        }
+      ],
       "unconfirmed": []
     }
   ]
