@@ -8,7 +8,7 @@ const tooltipList = [...tooltipTriggerList].map(
 // Selectores
 const container = document.getElementById("hero");
 const URL = "http://localhost:3000/events";
-cache ="id login"
+cache = "id login";
 
 //eventos
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,7 +26,6 @@ container.addEventListener("click", (e) => {
 async function confirmAsis(id) {
   const event = await getEvents();
 
-
   console.log(event);
 }
 
@@ -42,8 +41,14 @@ function pintarEvents(data) {
   data.forEach((event) => {
     const x = event.confirmed.length;
     const ux = event.unconfirmed.length;
+
     console.log(ux);
     const number = Number.parseInt(event.rentalCost);
+    const d = number / x;
+    const cd = d.toLocaleString("en", {
+      style: "currency",
+      currency: "COL",
+    });
     const cost = number.toLocaleString("en", {
       style: "currency",
       currency: "COL",
@@ -82,7 +87,7 @@ function pintarEvents(data) {
             </p>
             </div>
             <div class="d-flex justify-content-center">
-            <p>pay per player </p>
+            <p>Pay per player ${d} </p>
             </div>
             <div class="d-flex justify-content-evenly">
             <p>Award</p>
