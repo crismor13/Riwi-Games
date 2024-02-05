@@ -24,36 +24,14 @@
   ],
   "events": [
     {
-      "id": "001",
       "rentalCost": "120000",
       "minPlayers": "10",
       "location": "6 Piso de Moda Outlet",
       "date": "2024-02-02",
       "time": "14:25",
       "description": "Terminando Clases, puntuales, ya esta apartada",
-      "award": "asfd",
+      "award": "pola",
       "userId": "jjskj",
-      "confirmed": [
-        {
-          "userId": "asdf"
-        }
-      ],
-      "unconfirmed": [
-        {
-          "userId": "jjskj"
-        }
-      ]
-    },
-    {
-      "id": "002",
-      "rentalCost": "0",
-      "minPlayers": "8",
-      "location": "Micro Barrio Antioquia",
-      "date": "2024-02-02",
-      "time": "20:40",
-      "description": "Llevar balon para micro, $ 2.000",
-      "award": "Coca-Cola, Salchichon y Pan!",
-      "userId": "asdf",
       "confirmed": [
         {
           "userId": "jjskj"
@@ -62,7 +40,25 @@
           "userId": "asdf"
         }
       ],
-      "unconfirmed": []
+      "unconfirmed": [],
+      "id": "001"
+    },
+    {
+      "rentalCost": "50000",
+      "minPlayers": "8",
+      "location": "Micro Barrio Antioquia",
+      "date": "2024-02-02",
+      "time": "20:40",
+      "description": "Llevar balon para micro, $ 5.000",
+      "award": "Coca-Cola, Salchichon y Pan!",
+      "userId": "asdf",
+      "confirmed": [
+        {
+          "userId": "asdf"
+        }
+      ],
+      "unconfirmed": [],
+      "id": "002"
     },
     {
       "id": "c309",
@@ -73,7 +69,7 @@
       "time": "14:00",
       "description": "llegar 10 minutos antes ",
       "award": "primer ronda gratis ",
-      "userID": "bd93",
+      "userId": "bd93",
       "confirmed": [
         {
           "userId": "bd93"
@@ -87,6 +83,23 @@
           "userId": "jjskj"
         }
       ]
+    },
+    {
+      "id": "6f40",
+      "rentalCost": "85000",
+      "minPlayers": "10",
+      "location": "Cancha Sintética Chalaca Gol",
+      "date": "2024-03-08",
+      "time": "14:30",
+      "description": "Cl. 30A #69-2 llegar 15 minutos antes",
+      "award": "Garrafa",
+      "userId": "asdf",
+      "confirmed": [
+        {
+          "userId": "asdf"
+        }
+      ],
+      "unconfirmed": []
     }
   ]
 }

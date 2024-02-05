@@ -2,7 +2,7 @@
 const URL = "http://localhost:3000";
 const form = document.querySelector("form");
 let cache = idUserlogin();
-let eventId = eventEdit();
+let eventId = eventLS();
 
 document.addEventListener("DOMContentLoaded", () => {
   if (eventId != null) {
@@ -31,17 +31,33 @@ if (form) {
       if (value == "") return;
       event[key] = value;
     }
-    event.userID = cache;
-    event.confirmed = [{ userID: cache }];
+    event.userId = cache;
+    event.confirmed = [{ userId: cache }];
     event.unconfirmed = [];
-
-    createEvent(event);
+    if (eventId == null) {
+      createEvent(event);
+      localStorage.removeItem("event");
+    } else {
+      editEvent(event);
+    }
 
     form.reset();
+    window.location.href = "./seeEvents.html";
   });
 }
 
-function eventEdit() {
+async function editEvent(event) {
+  await fetch(`${URL}/events/${eventId.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(event),
+  });
+  localStorage.removeItem("event");
+}
+
+function eventLS() {
   let eventId = localStorage.getItem("event");
   let event = JSON.parse(eventId);
   return event;
