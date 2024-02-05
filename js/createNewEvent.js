@@ -2,6 +2,23 @@
 const URL = "http://localhost:3000";
 const form = document.querySelector("form");
 let cache = idUserlogin();
+let eventId = eventEdit();
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (eventId != null) {
+    autoCompleteForm();
+  }
+});
+
+function autoCompleteForm() {
+  Object.keys(eventId).forEach((key) => {
+    //una de las condiciones para que esto funcine: eventId (en este caso) sea un objeto y no una lista
+    const input = document.querySelector(`[name="${key}"]`); // si es por name o algun atributo debe tener []
+    if (input) {
+      input.value = eventId[key];
+    }
+  });
+}
 
 //Eventos
 if (form) {
@@ -9,7 +26,7 @@ if (form) {
     e.preventDefault();
     const formData = new FormData(form);
     const event = {};
-  
+
     for (const [key, value] of formData) {
       if (value == "") return;
       event[key] = value;
@@ -17,9 +34,17 @@ if (form) {
     event.userID = cache;
     event.confirmed = [{ userID: cache }];
     event.unconfirmed = [];
+
     createEvent(event);
+
     form.reset();
   });
+}
+
+function eventEdit() {
+  let eventId = localStorage.getItem("event");
+  let event = JSON.parse(eventId);
+  return event;
 }
 
 export function idUserlogin() {

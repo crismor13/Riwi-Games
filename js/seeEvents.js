@@ -29,7 +29,34 @@ container.addEventListener("click", (e) => {
     const id = e.target.getAttribute("data-id");
     unConfirmAsis(id);
   }
+
+  if (e.target.classList.contains("delete")) {
+    const id = e.target.getAttribute("data-id");
+    deleteEvent(id);
+  }
+
+  if (e.target.classList.contains("edit")) {
+    const id = e.target.getAttribute("data-id");
+    editEvent(id);
+    window.location.href = "./createNewEvent.html";
+  }
 });
+
+async function editEvent(id) {
+  const response = await fetch(`${URL}/${id}`);
+  const data = await response.json();
+  const event = JSON.stringify(data);
+  localStorage.setItem("event", event);
+}
+
+async function deleteEvent(id) {
+  await fetch(`${URL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
 
 async function confirmAsis(id) {
   const response = await fetch(`${URL}/${id}`);
@@ -99,7 +126,7 @@ async function unConfirmAsis(id) {
 }
 
 async function getEvents() {
-  const response = await fetch(`${URL}?_embed=user`);
+  const response = await fetch(`${URL}/?_embed=user`);
   const data = await response.json();
   pintarEvents(data);
 }
@@ -188,8 +215,18 @@ function pintarEvents(data) {
           </div>
         </div>
         <div class="buttonsS d-flex justify-content-evenly">
-          <button data-id="${event.id}" type="button" class="btn btn-outline-light">Edit</button>
-          <button data-id="${event.id}"type="button" class="btn btn-outline-light">Delete</button>
+
+          <button data-id="${
+            event.id
+          }" type="button" class="btn btn-outline-light edit" ${
+      event.userId !== cache && "disabled"
+    } >Edit</button>
+          <button data-id="${
+            event.id
+          }"type="button" class="btn btn-outline-light delete" ${
+      event.userId !== cache && "disabled"
+    }>Delete</button>
+
         </div>`;
     container.appendChild(div);
   });
