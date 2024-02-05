@@ -35,13 +35,14 @@
       "userId": "jjskj",
       "confirmed": [
         {
-          "userId": "jjskj"
-        },
-        {
           "userId": "asdf"
         }
       ],
-      "unconfirmed": []
+      "unconfirmed": [
+        {
+          "userId": "jjskj"
+        }
+      ]
     },
     {
       "id": "002",
@@ -54,6 +55,9 @@
       "award": "Coca-Cola, Salchichon y Pan!",
       "userId": "asdf",
       "confirmed": [
+        {
+          "userId": "jjskj"
+        },
         {
           "userId": "asdf"
         }
@@ -78,7 +82,11 @@
           "userId": "asdf"
         }
       ],
-      "unconfirmed": []
+      "unconfirmed": [
+        {
+          "userId": "jjskj"
+        }
+      ]
     }
   ]
 }
