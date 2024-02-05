@@ -20,6 +20,13 @@
       "password": "c123",
       "fullName": "Cristian",
       "level": "3"
+    },
+    {
+      "id": "fe0e",
+      "email": "dyron@gmail.com",
+      "password": "Dyron123",
+      "fullName": "Dyron",
+      "level": "1"
     }
   ],
   "events": [
@@ -40,25 +47,12 @@
           "userId": "asdf"
         }
       ],
-      "unconfirmed": [],
-      "id": "001"
-    },
-    {
-      "rentalCost": "55000",
-      "minPlayers": "8",
-      "location": "Micro Barrio Antioquia",
-      "date": "2024-02-02",
-      "time": "20:40",
-      "description": "Llevar balon para micro, $ 5.000",
-      "award": "Coca-Cola, Salchichon y Pan!",
-      "userId": "asdf",
-      "confirmed": [
+      "unconfirmed": [
         {
-          "userId": "asdf"
+          "userId": "fe0e"
         }
       ],
-      "unconfirmed": [],
-      "id": "002"
+      "id": "001"
     },
     {
       "id": "c309",
@@ -81,12 +75,14 @@
       "unconfirmed": [
         {
           "userId": "jjskj"
+        },
+        {
+          "userId": "fe0e"
         }
       ]
     },
     {
-      "id": "6f40",
-      "rentalCost": "85000",
+      "rentalCost": "90000",
       "minPlayers": "10",
       "location": "Cancha Sintética Chalaca Gol",
       "date": "2024-03-08",
@@ -99,7 +95,8 @@
           "userId": "asdf"
         }
       ],
-      "unconfirmed": []
+      "unconfirmed": [],
+      "id": "6f40"
     }
   ]
 }
