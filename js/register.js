@@ -47,8 +47,14 @@ async function registerUser() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: email.value, password: password.value, fullName: fullName.value, level: level.value}),
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+        fullName: fullName.value,
+        level: level.value,
+      }),
     });
+    window.location.href = "./login.html";
   } catch (error) {
     showAlert(error);
   }

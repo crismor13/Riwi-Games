@@ -36,7 +36,7 @@ if (form) {
     event.unconfirmed = [];
     if (eventId == null) {
       createEvent(event);
-      localStorage.removeItem("event");
+      // localStorage.removeItem("event");
     } else {
       editEvent(event);
     }
