@@ -24,11 +24,19 @@ container.addEventListener("click", (e) => {
     const id = e.target.getAttribute("data-id");
     confirmAsis(id);
   }
+
+  if (e.target.classList.contains("dislike")) {
+    const id = e.target.getAttribute("data-id");
+    unConfirmAsis(id);
+  }
 });
 
 async function confirmAsis(id) {
   const response = await fetch(`${URL}/${id}`);
   const data = await response.json();
+  const isUserInUnconfirmed = data.unconfirmed.some(
+    (user) => user.userId === cache
+  );
   const isUserInList = data.confirmed.some((user) => user.userId === cache); // esto busca si por lo menos uno esta en la lista
   if (!isUserInList) {
     const newAsist = [...data.confirmed, { userId: cache }];
@@ -39,22 +47,56 @@ async function confirmAsis(id) {
       },
       body: JSON.stringify({ confirmed: newAsist }),
     });
+    console.log("object");
+  }
+
+  if (isUserInUnconfirmed) {
+    const newNotAsist = [...data.unconfirmed];
+    const newlist = newNotAsist.filter((user) => user.userId !== cache);
+    await fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ unconfirmed: newlist }),
+    });
   }
 }
 
-// const isUserInList = data.confirmed.some((user) => user.userId === cache); // esto busca si por lo menos uno esta en la lista
-// if (isUserInList) {
-//   const newAsist = [...data.confirmed];
+async function unConfirmAsis(id) {
+  const response = await fetch(`${URL}/${id}`);
+  const data = await response.json();
 
-//   const newlist = newAsist.filter((user) => user.userId !== cache);
-//   await fetch(`${URL}/${id}`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ confirmed: newlist }),
-//   });
-// }
+  const isUserInUnconfirmed = data.unconfirmed.some(
+    (user) => user.userId === cache
+  );
+  const isUserInList = data.confirmed.some((user) => user.userId === cache);
+
+  if (isUserInList) {
+    // const newAsist = [...data.confirmed, { userId: cache }];
+    const newAsist = [...data.confirmed];
+    const newlist = newAsist.filter((user) => user.userId !== cache);
+    await fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ confirmed: newlist }),
+    });
+    console.log("object");
+  }
+
+  if (!isUserInUnconfirmed) {
+    const newNotAsist = [...data.unconfirmed, { userId: cache }];
+    await fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ unconfirmed: newNotAsist }),
+    });
+  }
+}
 
 async function getEvents() {
   const response = await fetch(`${URL}?_embed=user`);
