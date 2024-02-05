@@ -35,13 +35,14 @@
       "userId": "jjskj",
       "confirmed": [
         {
-          "userId": "jjskj"
-        },
-        {
           "userId": "asdf"
         }
       ],
-      "unconfirmed": []
+      "unconfirmed": [
+        {
+          "userId": "jjskj"
+        }
+      ]
     },
     {
       "id": "002",
@@ -56,6 +57,9 @@
       "confirmed": [
         {
           "userId": "asdf"
+        },
+        {
+          "userId": "jjskj"
         }
       ],
       "unconfirmed": []
@@ -78,7 +82,11 @@
           "userId": "asdf"
         }
       ],
-      "unconfirmed": []
+      "unconfirmed": [
+        {
+          "userId": "jjskj"
+        }
+      ]
     }
   ]
 }
