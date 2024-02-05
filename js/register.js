@@ -11,8 +11,6 @@ const level = document.getElementById("level");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  
   registerUser();
 });
 
