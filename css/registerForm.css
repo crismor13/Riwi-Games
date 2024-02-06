@@ -5,6 +5,7 @@ body {
   background-attachment: fixed;
   backdrop-filter: blur(3.5px);
   /* -webkit-filter: blur(8px); */
+  animation: show 0.4s ease;
 }
 
 body::-webkit-scrollbar {
@@ -33,4 +34,12 @@ body {
 .card > img {
   height: 30vh;
   object-fit: cover;
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
