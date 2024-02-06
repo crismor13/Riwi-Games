@@ -1,6 +1,8 @@
-.hero {
-  background-image: url(../static/uefa_champions_league_cup_101690_1920x1200.jpg);
+.hero2 {
+  background-image: url(../static/vintage.jpeg);
   display: flex;
+  background-size: cover;
+  background-repeat: no-repeat;
   object-fit: cover;
   justify-content: center;
   align-items: center;
@@ -8,7 +10,6 @@
   width: 100vw;
   gap: 15px;
   flex-wrap: wrap;
-  animation: show 0.4s ease;
   & .cont_cards {
     z-index: 2;
     display: flex;
@@ -21,7 +22,6 @@
     padding: 5px;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 5px;
-    animation: show 0.4s ease;
     & .card {
       background: rgb(255, 255, 255, 0.7);
       & .card-body {
@@ -29,6 +29,7 @@
         display: flex;
         gap: 10px;
         flex-direction: column;
+        animation: show 0.2s ease;
         & i {
           font-size: 25px;
         }
@@ -39,11 +40,9 @@
           display: flex;
           justify-content: center;
           align-items: baseline;
-          gap: 30px;
-          font-size: 20px;
-          color: red;
+          gap: 35px;
+          padding: 15px;
           position: absolute;
-          border: 1px solid black;
           width: 90%;
           height: 90%;
           background-color: rgb(255, 255, 255);
@@ -51,15 +50,27 @@
           z-index: 3;
           top: 25px;
           left: 30px;
-          transition: all 0.4s ease;
+          transition: all 0.2s ease;
           opacity: 0;
           z-index: -1;
+          & tr {
+            width: 180px;
+            margin: 5px;
+            display: flex;
+            justify-content: space-between;
+            & th {
+              font-size: 25px;
+            }
+            & td {
+              display: flex;
+              text-align: center;
+            }
+          }
         }
         & .showI {
-          z-index: 30 !important;
-          opacity: 1 !important;
+          z-index: 30;
+          opacity: 1;
         }
-
         & .asist {
           & .g {
             color: green !important;
@@ -85,7 +96,6 @@
         font-weight: bold;
       }
     }
-
     & .buttonsS {
       z-index: 2;
       width: 100%;

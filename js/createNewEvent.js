@@ -34,14 +34,15 @@ if (form) {
     event.userId = cache;
     event.confirmed = [{ userId: cache }];
     event.unconfirmed = [];
-    if (eventId == null) {
+    if (eventId === null) {
       createEvent(event);
+      form.reset();
       // localStorage.removeItem("event");
     } else {
+      localStorage.removeItem("event");
       editEvent(event);
+      form.reset();
     }
-
-    form.reset();
     window.location.href = "./seeEvents.html";
   });
 }
@@ -54,7 +55,7 @@ async function editEvent(event) {
     },
     body: JSON.stringify(event),
   });
-  localStorage.removeItem("event");
+  console.log("event");
 }
 
 function eventLS() {

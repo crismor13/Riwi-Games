@@ -15,7 +15,6 @@ let cache = idUserlogin();
 //eventos
 
 document.addEventListener("DOMContentLoaded", () => {
-  container.click();
   getEvents();
 });
 
@@ -54,7 +53,6 @@ container.addEventListener("click", (e) => {
     tbodydislike.innerHTML = "";
     tbodylike.innerHTML = "";
     getUsersEvent(id);
-    // pintarUserInfo(id);
   }
 
   if (e.target.classList.contains("subcontentI")) {
@@ -175,7 +173,9 @@ function pintarEvents(data) {
           <div class="card-body d-flex flex-column">
             <div class="tooltipI-container">
               <div class="tooltipI">
-                <div id=".${event.id}" data-id="${event.id}" class="subcontentI">
+                <div id=".${event.id}" data-id="${
+      event.id
+    }" class="subcontentI">
                   <div class="asist">
                     <table>
                       <thead>
@@ -259,14 +259,18 @@ function pintarEvents(data) {
           <button
             data-id="${event.id}"
             type="button"
-            class="btn btn-outline-light edit"
+            class="btn btn-outline-light edit ${
+              event.userId != cache && "disabled"
+            }"
           >
             Edit
           </button>
           <button
             data-id="${event.id}"
             type="button"
-            class="btn btn-outline-light delete"
+            class="btn btn-outline-light delete ${
+              event.userId != cache && "disabled"
+            }"
           >
             Delete
           </button>
@@ -302,7 +306,6 @@ async function getUsersEvent(id) {
 
 async function obtenerInfo(userId, idEvent) {
   const Id = userId.userId;
-  console.log(Id);
   const response = await fetch(`${URL}/users/${Id}`);
   const data = await response.json();
   const fullName = data.fullName;
