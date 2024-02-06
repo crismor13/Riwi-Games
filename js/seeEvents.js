@@ -8,11 +8,12 @@ const tooltipList = [...tooltipTriggerList].map(
 
 // Selectores
 const container = document.getElementById("hero");
-const URL = "http://localhost:3000/events";
+const URL = "http://localhost:3000";
 let cache = idUserlogin();
 // cache = "id login";
 
 //eventos
+
 document.addEventListener("DOMContentLoaded", () => {
   container.click();
   getEvents();
@@ -40,17 +41,40 @@ container.addEventListener("click", (e) => {
     editEvent(id);
     window.location.href = "./createNewEvent.html";
   }
+
+  if (e.target.classList.contains("info")) {
+    e.preventDefault();
+    const id = e.target.getAttribute("data-id");
+    const dl = id + "d";
+    const str = "." + id;
+    const showInfo = document.getElementById(str);
+    showInfo.classList.add("showI");
+    const tbodylike = document.getElementById(id);
+    const tbodydislike = document.getElementById(dl);
+    tbodydislike.innerHTML = "";
+    tbodylike.innerHTML = "";
+    getUsersEvent(id);
+    // pintarUserInfo(id);
+  }
+
+  if (e.target.classList.contains("subcontentI")) {
+    e.preventDefault();
+    const id = e.target.getAttribute("data-id");
+    const str = "." + id;
+    const showInfo = document.getElementById(str);
+    showInfo.classList.remove("showI");
+  }
 });
 
 async function editEvent(id) {
-  const response = await fetch(`${URL}/${id}`);
+  const response = await fetch(`${URL}/events/${id}`);
   const data = await response.json();
   const event = JSON.stringify(data);
   localStorage.setItem("event", event);
 }
 
 async function deleteEvent(id) {
-  await fetch(`${URL}/${id}`, {
+  await fetch(`${URL}/events/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +83,7 @@ async function deleteEvent(id) {
 }
 
 async function confirmAsis(id) {
-  const response = await fetch(`${URL}/${id}`);
+  const response = await fetch(`${URL}/events/${id}`);
   const data = await response.json();
   const isUserInUnconfirmed = data.unconfirmed.some(
     (user) => user.userId === cache
@@ -67,20 +91,19 @@ async function confirmAsis(id) {
   const isUserInList = data.confirmed.some((user) => user.userId === cache); // esto busca si por lo menos uno esta en la lista
   if (!isUserInList) {
     const newAsist = [...data.confirmed, { userId: cache }];
-    await fetch(`${URL}/${id}`, {
+    await fetch(`${URL}/events/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ confirmed: newAsist }),
     });
-    console.log("object");
   }
 
   if (isUserInUnconfirmed) {
     const newNotAsist = [...data.unconfirmed];
     const newlist = newNotAsist.filter((user) => user.userId !== cache);
-    await fetch(`${URL}/${id}`, {
+    await fetch(`${URL}/events/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +114,7 @@ async function confirmAsis(id) {
 }
 
 async function unConfirmAsis(id) {
-  const response = await fetch(`${URL}/${id}`);
+  const response = await fetch(`${URL}/events/${id}`);
   const data = await response.json();
 
   const isUserInUnconfirmed = data.unconfirmed.some(
@@ -103,19 +126,18 @@ async function unConfirmAsis(id) {
     // const newAsist = [...data.confirmed, { userId: cache }];
     const newAsist = [...data.confirmed];
     const newlist = newAsist.filter((user) => user.userId !== cache);
-    await fetch(`${URL}/${id}`, {
+    await fetch(`${URL}/events/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ confirmed: newlist }),
     });
-    console.log("object");
   }
 
   if (!isUserInUnconfirmed) {
     const newNotAsist = [...data.unconfirmed, { userId: cache }];
-    await fetch(`${URL}/${id}`, {
+    await fetch(`${URL}/events/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -126,7 +148,7 @@ async function unConfirmAsis(id) {
 }
 
 async function getEvents() {
-  const response = await fetch(`${URL}/?_embed=user`);
+  const response = await fetch(`${URL}/events/?_embed=user`);
   const data = await response.json();
   pintarEvents(data);
 }
@@ -151,40 +173,59 @@ function pintarEvents(data) {
     div.innerHTML += `
         <div class="card" style="width: 30rem">
           <div class="card-body d-flex flex-column">
+            <div class="tooltipI-container">
+              <div class="tooltipI">
+                <div id=".${event.id}" data-id="${event.id}" class="subcontentI">
+                  <div class="asist">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Class</th>
+                        </tr>
+                      </thead>
+                      <tbody id="${event.id}"></tbody>
+                    </table>
+                  </div>
+                  <div class="unasist">
+                    <table id="unlike">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Class</th>
+                        </tr>
+                      </thead>
+                      <tbody id="${event.id}d"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="tittle d-flex justify-content-between">
               <h5 class="card-title">${event.location}</h5>
-              <i
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                data-bs-title="more information about the event"
-                class="bx bxs-info-circle"
-              ></i>
+              <i data-id="${event.id}" class="bx bxs-info-circle info"></i>
             </div>
 
             <div class="d-flex justify-content-evenly">
-            <p>Date Event ${event.date}</p>
-            <p>Time ${event.time}</p>
+              <p>Date Event ${event.date}</p>
+              <p>Time ${event.time}</p>
             </div>
             <div class="desc">
-            <h5 class="card-text d-flex justify-content-center">
-              ${event.description}
-            </h5>
+              <h5 class="card-text d-flex justify-content-center">
+                ${event.description}
+              </h5>
             </div>
             <div class="d-flex g-2 justify-content-evenly asist">
-            <p class="">${cost}</p>
-            <p class="g">
-              Confirmed Players ${x}/${event.minPlayers}
-            </p>
-            <p class="r">
-              Cannot Attend ${ux}
-            </p>
+              <p class="">${cost}</p>
+              <p class="g">Confirmed Players ${x}/${event.minPlayers}</p>
+              <p class="r">Cannot Attend ${ux}</p>
             </div>
             <div class="d-flex justify-content-center">
-            <p>Pay per player ${cd} </p>
+              <p>Pay per player ${cd}</p>
             </div>
             <div class="d-flex justify-content-evenly">
-            <p>Award</p>
-            <p>${event.award}</p>
+              <p>Award</p>
+              <p>${event.award}</p>
             </div>
             <div
               class="btn-group"
@@ -215,18 +256,20 @@ function pintarEvents(data) {
           </div>
         </div>
         <div class="buttonsS d-flex justify-content-evenly">
-
-          <button data-id="${
-            event.id
-          }" type="button" class="btn btn-outline-light edit" ${
-      event.userId !== cache && "disabled"
-    } >Edit</button>
-          <button data-id="${
-            event.id
-          }"type="button" class="btn btn-outline-light delete" ${
-      event.userId !== cache && "disabled"
-    }>Delete</button>
-
+          <button
+            data-id="${event.id}"
+            type="button"
+            class="btn btn-outline-light edit"
+          >
+            Edit
+          </button>
+          <button
+            data-id="${event.id}"
+            type="button"
+            class="btn btn-outline-light delete"
+          >
+            Delete
+          </button>
         </div>`;
     container.appendChild(div);
   });
@@ -236,4 +279,63 @@ function cleanHTML() {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
+}
+
+async function getUsersEvent(id) {
+  const response = await fetch(`${URL}/events/${id}`);
+  const data = await response.json();
+  const noparticipantes = data.unconfirmed;
+  const participantes = data.confirmed;
+  if (participantes.length != 0) {
+    participantes.forEach((participante) => {
+      obtenerInfo(participante, id);
+    });
+  }
+  if (noparticipantes.length != 0) {
+    noparticipantes.forEach((participante) => {
+      obtenerInfod(participante, id);
+    });
+
+    return;
+  }
+}
+
+async function obtenerInfo(userId, idEvent) {
+  const Id = userId.userId;
+  console.log(Id);
+  const response = await fetch(`${URL}/users/${Id}`);
+  const data = await response.json();
+  const fullName = data.fullName;
+  const level = data.level;
+  inyectarInfo(fullName, level, idEvent);
+}
+
+async function obtenerInfod(userId, idEvent) {
+  // console.log(userId);
+  const Id = userId.userId;
+  // console.log(Id);
+  const response = await fetch(`${URL}/users/${Id}`);
+  const data = await response.json();
+  const fullName = data.fullName;
+  const level = data.level;
+  inyectarInfod(fullName, level, idEvent);
+}
+
+function inyectarInfo(fullName, level, idEvent) {
+  const tbodylike = document.getElementById(idEvent);
+  // tbodylike.innerHTML = "";
+  const tr = document.createElement("tr");
+  tr.innerHTML += `<td>${fullName}</td>
+  <td>${level}</td>`;
+  tbodylike.appendChild(tr);
+}
+
+function inyectarInfod(fullName, level, idEvent) {
+  const id = idEvent + "d";
+  const tbodylike = document.getElementById(id);
+  // tbodylike.innerHTML = "";
+  const tr = document.createElement("tr");
+  tr.innerHTML += `<td>${fullName}</td>
+  <td>${level}</td>`;
+  tbodylike.appendChild(tr);
 }
