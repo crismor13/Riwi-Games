@@ -10,6 +10,15 @@ const tooltipList = [...tooltipTriggerList].map(
 const container = document.getElementById("hero");
 const URL = "http://localhost:3000";
 let cache = idUserlogin();
+// let prueba = await obtenerUser();
+// console.log(prueba);
+
+// async function obtenerUser() {
+//   const response = await fetch(`${URL}/users`);
+//   const data = await response.json();
+//   return data;
+// }
+
 // cache = "id login";
 
 //eventos
