@@ -12,7 +12,6 @@ const URL = "http://localhost:3000";
 let cache = idUserlogin();
 // let prueba = await obtenerUser();
 // console.log(prueba);
-
 // async function obtenerUser() {
 //   const response = await fetch(`${URL}/users`);
 //   const data = await response.json();
@@ -25,7 +24,7 @@ let cache = idUserlogin();
 
 document.addEventListener("DOMContentLoaded", () => {
   getEvents();
-  container.click()
+  container.click();
 });
 
 container.addEventListener("click", (e) => {
@@ -58,10 +57,12 @@ container.addEventListener("click", (e) => {
     const str = "." + id;
     const showInfo = document.getElementById(str);
     showInfo.classList.add("showI");
+
     const tbodylike = document.getElementById(id);
     const tbodydislike = document.getElementById(dl);
-    tbodydislike.innerHTML = "";
-    tbodylike.innerHTML = "";
+
+    cleanHTMLlikes(tbodylike, tbodydislike);
+
     getUsersEvent(id);
   }
 
@@ -97,7 +98,7 @@ async function confirmAsis(id) {
     (user) => user.userId === cache
   );
   const isUserInList = data.confirmed.some((user) => user.userId === cache); // esto busca si por lo menos uno esta en la lista
-  
+
   if (!isUserInList) {
     const newAsist = [...data.confirmed, { userId: cache }];
     await fetch(`${URL}/events/${id}`, {
@@ -296,11 +297,21 @@ function cleanHTML() {
   }
 }
 
+function cleanHTMLlikes(tbodylike, tbodydislike) {
+  while (tbodylike.firstChild) {
+    tbodylike.removeChild(tbodylike.firstChild);
+  }
+
+  while (tbodydislike.firstChild) {
+    tbodydislike.removeChild(tbodydislike.firstChild);
+  }
+}
+
 async function getUsersEvent(id) {
   const response = await fetch(`${URL}/events/${id}`);
   const data = await response.json();
-  const noparticipantes = data.unconfirmed;
-  const participantes = data.confirmed;
+  const noparticipantes = await data.unconfirmed;
+  const participantes = await data.confirmed;
   if (participantes.length != 0) {
     participantes.forEach((participante) => {
       obtenerInfo(participante, id);
@@ -310,8 +321,6 @@ async function getUsersEvent(id) {
     noparticipantes.forEach((participante) => {
       obtenerInfod(participante, id);
     });
-
-    return;
   }
 }
 
@@ -319,8 +328,8 @@ async function obtenerInfo(userId, idEvent) {
   const Id = userId.userId;
   const response = await fetch(`${URL}/users/${Id}`);
   const data = await response.json();
-  const fullName = data.fullName;
-  const level = data.level;
+  const fullName = await data.fullName;
+  const level = await data.level;
   inyectarInfo(fullName, level, idEvent);
 }
 
@@ -330,14 +339,16 @@ async function obtenerInfod(userId, idEvent) {
   // console.log(Id);
   const response = await fetch(`${URL}/users/${Id}`);
   const data = await response.json();
-  const fullName = data.fullName;
-  const level = data.level;
+  const fullName = await data.fullName;
+  const level = await data.level;
   inyectarInfod(fullName, level, idEvent);
 }
 
 function inyectarInfo(fullName, level, idEvent) {
+  // console.log(idEvent);
+  // console.log(fullName);
+  // console.log(level);
   const tbodylike = document.getElementById(idEvent);
-  // tbodylike.innerHTML = "";
   const tr = document.createElement("tr");
   tr.innerHTML += `<td>${fullName}</td>
   <td>${level}</td>`;
@@ -345,11 +356,14 @@ function inyectarInfo(fullName, level, idEvent) {
 }
 
 function inyectarInfod(fullName, level, idEvent) {
+  console.log(idEvent);
+  console.log(fullName);
+  console.log(level);
   const id = idEvent + "d";
-  const tbodylike = document.getElementById(id);
-  // tbodylike.innerHTML = "";
+  const tbodydislike = document.getElementById(id);
   const tr = document.createElement("tr");
+  console.log(tbodydislike);
   tr.innerHTML += `<td>${fullName}</td>
   <td>${level}</td>`;
-  tbodylike.appendChild(tr);
+  tbodydislike.appendChild(tr);
 }
