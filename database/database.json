@@ -67,6 +67,9 @@
       "confirmed": [
         {
           "userId": "bd93"
+        },
+        {
+          "userId": "asdf"
         }
       ],
       "unconfirmed": [
@@ -75,9 +78,6 @@
         },
         {
           "userId": "fe0e"
-        },
-        {
-          "userId": "asdf"
         }
       ]
     },
