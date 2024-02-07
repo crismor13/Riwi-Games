@@ -25,6 +25,7 @@ let cache = idUserlogin();
 
 document.addEventListener("DOMContentLoaded", () => {
   getEvents();
+  container.click()
 });
 
 container.addEventListener("click", (e) => {
@@ -96,6 +97,7 @@ async function confirmAsis(id) {
     (user) => user.userId === cache
   );
   const isUserInList = data.confirmed.some((user) => user.userId === cache); // esto busca si por lo menos uno esta en la lista
+  
   if (!isUserInList) {
     const newAsist = [...data.confirmed, { userId: cache }];
     await fetch(`${URL}/events/${id}`, {
