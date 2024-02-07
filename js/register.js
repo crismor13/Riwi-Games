@@ -26,14 +26,6 @@ async function registerUser() {
     return;
   }
 
-  // const { validated: validatedSegurity, message: messageError } =
-  //   validatePasswordSegurity();
-
-  // if (!validatedSegurity) {
-  //   showAlert(messageError);
-  //   return;
-  // }
-
   if (await validateEmail()) {
     showAlert("El email ya se encuentra registrado.");
     return;
@@ -59,6 +51,7 @@ async function registerUser() {
     showAlert(error);
   }
 }
+
 async function validateEmail() {
   const response = await fetch(`${URL}?email=${email.value}`);
 
@@ -74,22 +67,6 @@ function validatePassword() {
 
   return { validated: true };
 }
-
-// function validatePasswordSegurity() {
-//   const regex =
-//     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
-
-//   //El metodo test permite evaluar una cadena de texto a partir de una expresión regular
-//   if (regex.test(password.value)) {
-//     return { validated: true };
-//   }
-
-//   return {
-//     validated: false,
-//     message:
-//       "La contraseña debe tener mayusculas, minusculas, un caracater especial y un rango de 8 a 15 caracateres",
-//   };
-// }
 
 function showAlert(message) {
   Swal.fire({
