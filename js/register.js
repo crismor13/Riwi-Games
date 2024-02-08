@@ -40,7 +40,7 @@ async function registerUser() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        url: await picProfile(),
+        //url: await picProfile(),
         email: email.value,
         password: password.value,
         fullName: fullName.value,
