@@ -2,5 +2,14 @@
   "lang": "es",
   "log": "¡Desmuesta </br> de que estas </br> hecho!",
   "newEvent": "Crear Evento",
-  "expEvent": "Explorar Eventos"
+  "expEvent": "Explorar Eventos",
+  "logIn": "Inicio Sesión",
+  "register": "Registro",
+  "home": "Home",
+  "welcome": "Bienvenido!",
+  "email": "Correo Electrónico",
+  "emaili": "Nunca compartiremos tu correo electrónico.",
+  "password": "Clave",
+  "submit": "Enviar",
+  "logOut": "Salir"
 }

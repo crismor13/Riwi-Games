@@ -2,5 +2,15 @@
   "lang": "en",
   "log": "Show what </br>you are</br> made of!",
   "newEvent": "Create Event",
-  "expEvent": "Explore Events"
+  "expEvent": "Explore Events",
+  "logIn": "Log In",
+  "register": "Register",
+  "home": "Home",
+  "welcome": "Welcome!",
+  "email":"Email address",
+  "emaili":"We'll never share your email with anyone else.",
+  "password":"Password",
+  "submit": "Submit",
+  "logOut": "Log Out"
+  
 }

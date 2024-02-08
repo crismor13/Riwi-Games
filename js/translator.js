@@ -1,63 +1,49 @@
-import i18next from "../node_modules/i18next/i18next";
-import Backend from "../i18next-http-backend";
-
-export function getLanguague() {
-  if (localStorage.getItem("lang")) {
-    return localStorage.getItem("lang");
+const lang = document.querySelector(".change-language");
+let langLS;
+document.addEventListener("DOMContentLoaded", (e) => {
+  e.preventDefault();
+  langDefect();
+});
+lang.addEventListener("click", async (e) => {
+  e.preventDefault();
+  if (langLS == "en") {
+    localStorage.setItem("lang", "es");
+    langLS = "es";
+    console.log(langLS);
+    selectLanguage();
   } else {
-    return "en";
+    localStorage.setItem("lang", "en");
+    langLS = "en";
+    selectLanguage();
+  }
+});
+
+async function selectLanguage() {
+  if (langLS == "en") {
+    const language = await fetch(`/locales/en/translations.json`);
+    const langE = await language.json();
+    translator(langE);
+  } else {
+    const language = await fetch(`/locales/es/translations.json`);
+    const langS = await language.json();
+    translator(langS);
   }
 }
 
-let language = getLanguague();
-
-i18next
-  .use(Backend)
-  .init({
-    lng: language,
-    debug: false,
-    backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json",
-    },
-    ns: ["translation"],
-    defaultNS: "translation",
-  })
-  .then(() => updateContent());
-
-export function updateContent() {
-  const elements = document.querySelectorAll("[data-i18n]");
-  elements.forEach((el) => {
-    const key = el.getAttribute("data-i18n");
-    el.innerHTML = data[key];
+async function translator(language) {
+  const elements = document.querySelectorAll("[data-lang]");
+  elements.forEach((element) => {
+    const key = element.getAttribute("data-lang");
+    element.innerHTML = language[key];
   });
 }
 
-window.changeLanguage = function (lng) {
-  i18next.changeLanguage(lng, updateContent);
-  localStorage.setItem("lang", lng);
-};
-
-export function changeLanguageOnClick() {
-  const btnChangeLanguage = document.querySelector(".menu__header--lang");
-  const langFlag = document.querySelector(".lang--flag");
-  function upfateFlag() {
-    if (langFlag) {
-      if (language === "es") {
-        langFlag.classList.add("es");
-      } else {
-        langFlag.classList.remove("es");
-      }
-    }
+function langDefect() {
+  if (!localStorage.getItem("lang")) {
+    localStorage.setItem("lang", "en");
+    langLS = "en";
+  } else {
+    langLS = localStorage.getItem("lang");
   }
-  upfateFlag();
-
-  if (btnChangeLanguage) {
-    btnChangeLanguage.querySelector("h4").innerText = language.toUpperCase();
-    btnChangeLanguage.addEventListener("click", () => {
-      language == "en" ? (language = "es") : (language = "en");
-      i18next.changeLanguage(language, updateContent);
-      localStorage.setItem("lang", language);
-      upfateFlag();
-    });
-  }
+  selectLanguage();
 }

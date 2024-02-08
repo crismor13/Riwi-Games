@@ -15,14 +15,11 @@ if (isUserLoggedIn == "true") {
   registerOption.remove();
 
   let newLogOutItem = document.createElement("li");
-  newLogOutItem.innerHTML = `<a class="nav-link" id="log-out" href="./">Log out</a>`;
+  newLogOutItem.innerHTML = `<a data-lang="logOut" class="nav-link" id="log-out" href="./">Log out</a>`;
 
   newLogOutItem.addEventListener("click", logOutUser);
 
-  
   navbarUnorderedList.append(newLogOutItem);
-
-  
 } else if (isUserLoggedIn == "false") {
   let logOutOption = navbarUnorderedList.querySelector("#log-out");
   logOutOption.remove();
